@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Путеводитель «Нанкин 2026»</title>
+<style>
+  :root{
+    --red:#b3242b; --red2:#d23b42; --ink:#1f2328; --muted:#5b6470;
+    --bg:#fbfaf7; --card:#ffffff; --line:#e7e2d8; --gold:#c8a24a;
+    --warn-bg:#fff6e6; --warn-bd:#f0c36d; --info-bg:#eef4fb; --info-bd:#a9c6e8;
+    --ok-bg:#eef7ee; --ok-bd:#a8d3a8;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Roboto,Helvetica,Arial,"Apple Color Emoji",sans-serif;
+    font-size:15px; line-height:1.6;
+  }
+  .wrap{max-width:860px; margin:0 auto; padding:0 20px 60px}
+  header.hero{
+    background:linear-gradient(135deg,var(--red),var(--red2)); color:#fff;
+    padding:38px 28px 30px; border-radius:0 0 18px 18px; margin-bottom:8px;
+  }
+  header.hero .tag{display:inline-block; background:rgba(255,255,255,.18); padding:3px 11px; border-radius:20px; font-size:12.5px; letter-spacing:.5px; margin-bottom:12px}
+  header.hero h1{margin:0 0 6px; font-size:30px; line-height:1.15}
+  header.hero h1 .cn{font-weight:400; opacity:.85}
+  header.hero p{margin:4px 0 0; opacity:.95; font-size:14.5px}
+  .banner{margin:8px 0 0; border-radius:14px; overflow:hidden; border:1px solid var(--line); position:relative}
+  .banner img{width:100%; height:230px; object-fit:cover; display:block}
+  .banner .cap{position:absolute; left:0; right:0; bottom:0; padding:18px 16px 8px; color:#fff; font-size:12.5px; background:linear-gradient(transparent,rgba(0,0,0,.55))}
+  .verify{background:var(--warn-bg); border:1px solid var(--warn-bd); border-radius:12px; padding:12px 16px; margin:18px 0; font-size:13.5px; color:#6b4e16}
+  nav.toc{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 20px; margin:18px 0; columns:2; column-gap:26px}
+  nav.toc a{display:block; color:var(--ink); text-decoration:none; padding:3px 0; font-size:13.7px; break-inside:avoid}
+  nav.toc a:hover{color:var(--red)}
+  nav.toc .num{color:var(--gold); font-weight:700; margin-right:7px}
+  h2.block{font-size:20px; margin:34px 0 12px; padding-top:12px; border-top:2px solid var(--line); color:var(--red)}
+  h2.block .n{display:inline-block; min-width:30px; color:var(--gold)}
+  h3{font-size:15.5px; margin:18px 0 6px}
+  p{margin:9px 0}
+  ul,ol{margin:9px 0 9px 4px; padding-left:20px}
+  li{margin:4px 0}
+  .cn{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif}
+  code,.mono{font-family:"SF Mono",Menlo,Consolas,monospace; background:#f1efe9; padding:1px 6px; border-radius:5px; font-size:13px}
+  table{width:100%; border-collapse:collapse; margin:12px 0; font-size:13.4px; background:var(--card)}
+  th,td{border:1px solid var(--line); padding:7px 9px; text-align:left; vertical-align:top}
+  th{background:#f4f1ea; font-weight:700}
+  tr:nth-child(even) td{background:#fcfbf8}
+  .box{border-radius:12px; padding:13px 16px; margin:14px 0; font-size:13.8px}
+  .box.warn{background:var(--warn-bg); border:1px solid var(--warn-bd)}
+  .box.info{background:var(--info-bg); border:1px solid var(--info-bd)}
+  .box.ok{background:var(--ok-bg); border:1px solid var(--ok-bd)}
+  .box .h{font-weight:700; display:block; margin-bottom:3px}
+  .quick{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0}
+  .quick .c{background:var(--card); border:1px solid var(--line); border-left:4px solid var(--red); border-radius:10px; padding:12px 14px; font-size:13.4px}
+  .quick .c b{display:block; margin-bottom:4px; color:var(--red)}
+  .addr{background:#1f2328; color:#fff; border-radius:10px; padding:12px 15px; font-size:16px; text-align:center; letter-spacing:.5px; margin:10px 0}
+  .pill{display:inline-block; background:#f1efe9; border:1px solid var(--line); border-radius:6px; padding:1px 7px; font-size:12px; margin:0 2px}
+  .muted{color:var(--muted)}
+  figure.img{margin:14px 0; border-radius:12px; overflow:hidden; border:1px solid var(--line); background:var(--card)}
+  figure.img img{width:100%; display:block}
+  figure.img figcaption{font-size:12.3px; color:var(--muted); padding:7px 12px}
+  .gallery{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0}
+  .gallery figure{margin:0}
+  .gallery img{height:170px; object-fit:cover}
+  .mapbox{border:1px solid var(--line); border-radius:12px; overflow:hidden; margin:14px 0; background:var(--card)}
+  .mapbox iframe{width:100%; height:330px; border:0; display:block}
+  .maplinks{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0}
+  .maplinks a{display:inline-block; background:var(--card); border:1px solid var(--line); border-radius:8px; padding:6px 11px; font-size:13px; text-decoration:none; color:var(--red)}
+  .maplinks a:hover{border-color:var(--red)}
+  footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--line); font-size:12.5px; color:var(--muted); text-align:center}
+  a{color:var(--red)}
+  @media (max-width:620px){ nav.toc{columns:1} .quick{grid-template-columns:1fr} .gallery{grid-template-columns:1fr} .gallery img{height:auto} header.hero h1{font-size:24px} .banner img{height:170px} }
+  .apps{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0}
+  .app{display:flex; gap:11px; background:var(--card); border:1px solid var(--line); border-radius:11px; padding:11px 12px}
+  .app .ico{width:46px; height:46px; border-radius:11px; flex:0 0 46px; object-fit:cover}
+  .app .badge{display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:12.5px; letter-spacing:.3px}
+  .app .meta{min-width:0}
+  .app .meta b{display:block; font-size:14px; margin-bottom:2px}
+  .app .meta .d{font-size:12.3px; color:var(--muted); display:block; margin-bottom:6px}
+  .app .dl a{display:inline-block; font-size:11.5px; border:1px solid var(--line); border-radius:6px; padding:2px 8px; margin:0 5px 4px 0; text-decoration:none; color:var(--red)}
+  @media (max-width:620px){ .apps{grid-template-columns:1fr} }
+  .brands{margin:0}
+  h3.cat{font-size:15px; margin:20px 0 8px; padding-left:10px; border-left:4px solid var(--red)}
+  .bgrid{display:grid; grid-template-columns:1fr 1fr; gap:11px; margin:8px 0 4px}
+  .brand{display:flex; gap:11px; background:var(--card); border:1px solid var(--line); border-radius:11px; padding:10px 12px; align-items:flex-start}
+  .brand .lg{width:50px; height:50px; flex:0 0 50px; border-radius:10px; border:1px solid var(--line); background:#fff; object-fit:contain; padding:5px}
+  .brand .lg.badge{display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:17px; border:0; padding:0}
+  .brand .bi{min-width:0}
+  .brand .bi b{display:block; font-size:13.7px; margin-bottom:3px}
+  .brand .bi .bd{display:block; font-size:12.2px; color:var(--muted); margin-top:4px}
+  .tier{display:inline-block; font-size:10.5px; font-weight:700; border-radius:5px; padding:1px 7px}
+  .tier.t1{background:#eef7ee; color:#2f7d32}
+  .tier.t2{background:#fff6e6; color:#9a6a16}
+  .tier.t3{background:#fbeeee; color:#b3242b}
+  @media (max-width:620px){ .bgrid{grid-template-columns:1fr} }
+  .brand .bi b a{color:inherit; text-decoration:none; border-bottom:1px dotted var(--gold)}
+  .brand .bi b a:hover{color:var(--red)}
+  h3.shead{font-size:16px; margin:24px 0 9px; color:var(--red); border-bottom:2px solid var(--line); padding-bottom:6px}
+  @media print{
+    body{background:#fff; font-size:11.5px}
+    .wrap{max-width:none; padding:0 6mm}
+    header.hero{border-radius:0; margin:0 -6mm 8px; padding:22px 6mm}
+    nav.toc{columns:2}
+    h2.block{break-after:avoid; page-break-after:avoid}
+    table,.box,.quick,.addr,figure.img,.app,.brand{break-inside:avoid}
+    .bgrid{grid-template-columns:1fr 1fr}
+    .apps{grid-template-columns:1fr 1fr}
+    .banner img{height:150px}
+    .gallery img{height:120px}
+    .mapbox{display:none}
+    a{color:var(--ink); text-decoration:none}
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <span class="tag">ЯЗЫКОВОЙ ЛАГЕРЬ · 29.06–10.07.2026</span>
+  <h1>Путеводитель «Нанкин» <span class="cn">南京</span></h1>
+  <p>Юго-Восточный университет 东南大学, кампус Цзюлунху</p>
+</header>
+<div class="wrap">
+
+  <div class="banner">
+    <img src="img/qinhuai.jpg" alt="Набережная Циньхуай и храм Конфуция вечером">
+    <div class="cap">Набережная Циньхуай у храма Конфуция Фуцзымяо — вечерняя визитная карточка Нанкина · <span class="muted">фото: Wikimedia Commons</span></div>
+  </div>
+
+  <div class="verify">
+    ✅ Данные — курсы, часы работы, цены, маршруты — проверены по источникам <b>25.06.2026</b>.
+    Цены и часы в Китае меняются и зависят от сезона/праздников — ключевое сверяй в приложении
+    <b>Amap</b> / на месте. Большинство музеев требуют <b>предварительной онлайн-брони по паспорту</b>
+    и <b>закрыты по понедельникам</b>.
+  </div>
+
+  <div class="box info" style="border-color:#7eb3e6">
+    <span class="h">📸 Фотобот поездки — <a href="https://t.me/nanjing_photo_bot" target="_blank">@nanjing_photo_bot</a></span>
+    Этот бот сделан <b>специально для нашей поездки и нашей группы</b>. Он собирает все фото и видео в одну общую папку на Google Drive. Заливайте туда все классные кадры с Нанкина — чтобы у каждого осталось немного истории и впечатлений с поездки.
+    <ul style="margin:6px 0 4px">
+      <li>Открой <a href="https://t.me/nanjing_photo_bot" target="_blank">t.me/nanjing_photo_bot</a> → нажми <b>Start</b> → присылай фото и видео, по одному или сразу пачкой. Бот сам подпишет их твоим именем и временем и ответит, что сохранил.</li>
+      <li>Нужно <b>оригинальное качество</b> без сжатия — отправляй фото «как файл»: скрепка 📎 → <b>Файл</b>.</li>
+      <li>Команда <b>/menu</b> → кнопка <b>«Папка с фото»</b> откроет общую папку на Google Drive, где всё можно посмотреть и скачать.</li>
+    </ul>
+    <b>⚠️ Папка общая — её видят все участники группы. Сохраняйте через бота только то, чем готовы поделиться.</b>
+  </div>
+
+  <nav class="toc">
+    <a href="#b0"><span class="num">0</span>Быстрая шпаргалка</a>
+    <a href="#b1"><span class="num">1</span>О Нанкине</a>
+    <a href="#b2"><span class="num">2</span>История города</a>
+    <a href="#b3"><span class="num">3</span>Короткая справка</a>
+    <a href="#b4"><span class="num">4</span>Транспорт и карты</a>
+    <a href="#b5"><span class="num">5</span>Что посмотреть</a>
+    <a href="#b6"><span class="num">6</span>Чем заняться</a>
+    <a href="#b7"><span class="num">7</span>Shopping · ТЦ, сувениры, бренды</a>
+    <a href="#b8"><span class="num">8</span>Еда и напитки</a>
+    <a href="#b9"><span class="num">9</span>Подарок принимающей семье</a>
+    <a href="#b11"><span class="num">10</span>Деньги — подробно</a>
+    <a href="#b12"><span class="num">11</span>Связь и интернет</a>
+    <a href="#b13"><span class="num">12</span>Язык и общение</a>
+    <a href="#b14"><span class="num">13</span>Здоровье и безопасность</a>
+    <a href="#b15"><span class="num">14</span>Культура и этикет</a>
+    <a href="#b16"><span class="num">15</span>Практические лайфхаки</a>
+    <a href="#b17"><span class="num">16</span>Свободное время</a>
+    <a href="#b19"><span class="num">17</span>Контакты и ссылки</a>
+    <a href="#b20"><span class="num">18</span>Сборы — чек-лист</a>
+    <a href="#b21"><span class="num">19</span>Приложения для поездки</a>
+    <a href="#ph"><span class="num">📎</span>Разговорник</a>
+  </nav>
+
+  <h2 class="block" id="b0"><span class="n">0</span>Быстрая шпаргалка</h2>
+  <div class="quick">
+    <div class="c"><b>🆘 Экстренные · звонок бесплатный</b>110 полиция · 120 скорая · 119 пожарные · 122 ДТП · 12301 турлиния. По-английски отвечают не всегда.</div>
+    <div class="c"><b>🏛️ Консульство РБ · Шанхай отвечает за Цзянсу</b>china.shanghai@mfa.gov.by · shanghai.mfa.gov.by · Посольство, Пекин: +86 10 6532 1691</div>
+    <div class="c"><b>📞 Ассистанс страховки «Савитар Груп»</b>+7 495 987 17 75 · Telegram @Savitargrbot · WhatsApp +7 906 762 41 70<br><span class="muted">У каждого участника своя страховка — используйте свои данные и держите полис под рукой. Контакты даны для ориентира.</span></div>
+    <div class="c"><b>💴 Курс на 25.06.2026</b>100 ¥ ≈ <b>41 BYN</b> ≈ 14,7 USD. По мелочи: 1 ¥ ≈ 0,41 BYN, 1 USD ≈ 6,8 ¥.</div>
+  </div>
+  <p><b>🏫 Адрес общежития — показать таксисту:</b></p>
+  <div class="addr cn">南京市江宁区东南大学九龙湖校区 兰园3栋</div>
+  <div class="box ok"><b>3 вещи, без которых не выходить:</b> телефон с интернетом по eSIM + повербанк · Alipay/WeChat · копия паспорта на бумаге и в фото.</div>
+
+  <h2 class="block" id="b1"><span class="n">1</span>О Нанкине</h2>
+  <p>Нанкин <span class="cn">南京</span>, «Южная столица», — главный город провинции Цзянсу, на реке Янцзы, ~9,3 млн человек. Это одна из <b>четырёх великих древних столиц Китая</b> наряду с Пекином, Сианем и Лояном, бывшая столица нескольких династий и Китайской Республики. Сегодня — крупный университетский, научный и культурный центр.</p>
+  <ul>
+    <li><b>Время:</b> Китай — единое время <b>UTC+8</b>. Разница с Минском <b>+5 часов</b>: когда в Минске 12:00, в Нанкине 17:00.</li>
+    <li><b>Когда едем:</b> конец июня–июль — сезон сливовых дождей «мэйюй» <span class="cn">梅雨</span>: жарко и влажно. Нанкин — одна из «трёх печей» Китая.</li>
+  </ul>
+  <figure class="img">
+    <img src="img/skyline.jpg" alt="Современный Нанкин — вид с городской стены">
+    <figcaption>Современный деловой центр Нанкина — вид со старой городской стены: древняя столица и мегаполис рядом. <span class="muted">Wikimedia Commons</span></figcaption>
+  </figure>
+
+  <h2 class="block" id="b2"><span class="n">2</span>История Нанкина <span class="muted" style="font-size:14px">— чтобы понимать, что видишь</span></h2>
+  <p>Нанкину более <b>2500 лет</b>, и он успел побыть столицей <b>десяти</b> династий и государств — отсюда прозвище «столица десяти династий». За века город не раз менял имя: <b>Цзиньлин</b> 金陵, <b>Цзянькан</b> 建康, <b>Цзянье</b>. Краткая хронология:</p>
+  <ul>
+    <li><b>472 г. до н.э.</b> — на месте города основано первое укреплённое поселение в эпоху Воюющих царств.</li>
+    <li><b>Шесть династий, III–VI вв.</b> — Нанкин, тогда <b>Цзянькан</b>, был столицей южных династий, центром буддизма, поэзии и искусства; об этом — <b>Музей шести династий</b>.</li>
+    <li><b>Династия Мин, с 1368 г.</b> — император <b>Чжу Юаньчжан</b> сделал Нанкин первой столицей империи Мин. Тогда построили <b>крепостную стену</b> — на тот момент длиннейшую в мире, ~35 км, из которых сохранилось ~25 км, — и <b>гробницу Минсяолин</b>, объект Всемирного наследия ЮНЕСКО.</li>
+    <li><b>1853–1864</b> — <b>Тайпинское восстание</b>: Нанкин, «Небесная столица», был столицей государства тайпинов.</li>
+    <li><b>1912 / 1927–1949</b> — <b>Сунь Ятсен</b> провозгласил здесь Китайскую Республику; Нанкин — её столица. Отсюда <b>Президентский дворец</b> и <b>Мавзолей Сунь Ятсена</b>.</li>
+    <li><b>1937 — Нанкинская резня:</b> массовая трагедия при японской оккупации. Ей посвящён <b>Мемориал жертв</b> — место скорби, где ведут себя тихо и без весёлого фото.</li>
+  </ul>
+
+  <h3>История главных достопримечательностей</h3>
+  <ul>
+    <li><b>Мавзолей Сунь Ятсена</b> <span class="cn">中山陵</span> — усыпальница «отца нации», построена в 1926–1929 гг. на склоне Пурпурной горы. Знаменитая лестница из <b>392 ступеней</b> и синяя черепичная крыша; синий и белый — цвета Гоминьдана.</li>
+    <li><b>Городская стена Мин и ворота Чжунхуа</b> <span class="cn">中华门</span> — XIV в. На кирпичах ставили <b>клейма</b> мастеров и чиновников: за брак виновного наказывали — древний «контроль качества». Чжунхуа — сложнейшие ворота с тремя рядами стен и нишами, где прятались солдаты.</li>
+    <li><b>Президентский дворец</b> <span class="cn">总统府</span> — здесь были и сады времён Мин–Цин, и резиденция вождя тайпинов, и кабинет <b>Сунь Ятсена</b>, и власть <b>Чан Кайши</b>. Большой музей истории Китайской Республики.</li>
+    <li><b>Храм Конфуция, или Фуцзымяо,</b> <span class="cn">夫子庙</span> — храм с 1034 г.; рядом был <b>Цзяннаньский экзаменационный двор</b> — крупнейший в стране центр имперских госэкзаменов. Вокруг — старинный квартал и набережная реки <b>Циньхуай</b>.</li>
+    <li><b>Мемориал Нанкинской резни</b> — музей-памятник жертвам 1937 года, одно из самых сильных мест города.</li>
+  </ul>
+
+  <div class="gallery">
+    <figure class="img">
+      <img src="img/sunyatsen.jpg" alt="Мавзолей Сунь Ятсена">
+      <figcaption>Мавзолей Сунь Ятсена на Пурпурной горе. <span class="muted">Wikimedia</span></figcaption>
+    </figure>
+    <figure class="img">
+      <img src="img/wall.jpg" alt="Городская стена Нанкина">
+      <figcaption>Городская стена династии Мин — одна из длиннейших сохранившихся в мире. <span class="muted">Wikimedia</span></figcaption>
+    </figure>
+    <figure class="img">
+      <img src="img/presidential.jpg" alt="Президентский дворец Нанкина">
+      <figcaption>Президентский дворец — резиденция Сунь Ятсена и Чан Кайши. <span class="muted">Wikimedia</span></figcaption>
+    </figure>
+    <figure class="img">
+      <img src="img/xuanwu.jpg" alt="Озеро Сюаньу и Пурпурная гора">
+      <figcaption>Озеро Сюаньу на фоне Пурпурной горы. <span class="muted">Wikimedia</span></figcaption>
+    </figure>
+  </div>
+
+  <div class="box info">
+    <span class="h">📚 Почитать подробнее на русском</span>
+    <ul style="margin:6px 0 0">
+      <li><a href="https://ru.wikipedia.org/wiki/Нанкин">Нанкин — Википедия</a> — история, династии, факты</li>
+      <li><a href="https://www.kupibilet.ru/gid/kitai/nankin">Kupibilet — гид по Нанкину</a> — история и достопримечательности</li>
+      <li><a href="https://visitchina.ru/cities/provintsiya_tszyansu/nankin/general/">VisitChina.ru — общая информация о Нанкине</a></li>
+      <li><a href="https://kitau.ru/putevoditel-po-guangzhou/nankin/">Китай.Ру — Нанкин, одна из четырёх древних столиц</a></li>
+    </ul>
+  </div>
+
+  <h2 class="block" id="b3"><span class="n">3</span>Короткая справка</h2>
+  <table>
+    <tr><th>Тема</th><th>Кратко</th></tr>
+    <tr><td>Виза</td><td>Безвиз до 30 дней; детали — в файле «Виза и въезд»</td></tr>
+    <tr><td>Деньги</td><td>Юань ¥, CNY. Оплата почти везде по QR в Alipay/WeChat. 100 ¥ ≈ 41 BYN</td></tr>
+    <tr><td>Связь</td><td>Международная eSIM = интернет без VPN; местная симка — за файрволом, нужен VPN</td></tr>
+    <tr><td>Розетки</td><td>220 В, как дома; нужен переходник на тип A/I</td></tr>
+    <tr><td>Язык</td><td>Китайский, путунхуа. По-английски говорят мало — нужен переводчик</td></tr>
+    <tr><td>Экстренные</td><td>110 / 120 / 119</td></tr>
+    <tr><td>Вода из-под крана</td><td><b>Не пить</b>, только бутилированная/кипячёная</td></tr>
+  </table>
+
+  <h2 class="block" id="b4"><span class="n">4</span>Транспорт и карты</h2>
+  <ul>
+    <li><b>Метро</b> — самый удобный способ. Тариф по расстоянию <b>¥2–15</b>, обычно ¥2–5. Оплата QR в Alipay/WeChat или жетоном. Работает ~<b>06:00–23:00</b>.</li>
+    <li><b>От кампуса Цзюлунху</b> — станция «<span class="cn">东大九龙湖校区</span>» на линии 3, ~1,2 км / 10–15 мин пешком. Линия 3 ведёт в центр и до <b>Южного вокзала</b> — оттуда поезда в Шанхай.</li>
+    <li><b>Такси / Didi</b> <span class="cn">滴滴</span> — через Alipay/WeChat; адрес иероглифами.</li>
+    <li><b>Велошеринг</b> — разблокировка через Alipay/WeChat.</li>
+    <li><b>Поезд в Шанхай</b> на 08.07 организует лагерь: Нанкин Южный → Шанхай Хунцяо, <b>1–1,5 ч</b>.</li>
+  </ul>
+
+  <h3>🗺️ Карта района кампуса Цзюлунху</h3>
+  <div class="mapbox">
+    <iframe loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=118.78%2C31.86%2C118.86%2C31.91&amp;layer=mapnik&amp;marker=31.8847%2C118.8146" title="Карта кампуса Цзюлунху"></iframe>
+  </div>
+  <div class="maplinks">
+    <a href="https://www.openstreetmap.org/?mlat=31.8847&mlon=118.8146#map=14/31.8847/118.8146" target="_blank">🌍 Открыть карту OpenStreetMap</a>
+    <a href="https://www.google.com/maps/search/?api=1&query=Southeast+University+Jiulonghu+Campus+Nanjing" target="_blank">📍 Google Maps</a>
+    <a href="https://uri.amap.com/search?keyword=%E4%B8%9C%E5%8D%97%E5%A4%A7%E5%AD%A6%E4%B9%9D%E9%BE%99%E6%B9%96%E6%A0%A1%E5%8C%BA" target="_blank">🧭 Amap 高德 — для такси</a>
+  </div>
+  <div class="box info" style="font-size:13px"><b>Совет:</b> в Китае точнее всего работают <b>Amap</b> 高德地图 и <b>Baidu Maps</b> — Google Maps смещает точки. Карту района Нанкина в Amap лучше скачать офлайн заранее.</div>
+
+  <h3>🚇 Схема метро Нанкина</h3>
+  <figure class="img">
+    <img src="img/metro.png" alt="Схема метро Нанкина">
+    <figcaption>Сеть метро Нанкина. Кампус — на <b>линии 3</b>, станция «东大九龙湖校区»; пересадки в центр и на Южный вокзал. <span class="muted">Wikimedia Commons</span></figcaption>
+  </figure>
+  <div class="maplinks">
+    <a href="https://commons.wikimedia.org/wiki/Special:FilePath/Nanjing_Metro_Network.png" target="_blank">🔍 Открыть схему метро крупно</a>
+  </div>
+
+  <h2 class="block" id="b5"><span class="n">5</span>Что посмотреть</h2>
+  <div class="box info"><b>🟢 Уже в программе лагеря:</b> озеро Сюаньу, храм Конфуция Фуцзымяо, Музей шести династий, Мавзолей Сунь Ятсена, зоопарк Хуншань, обзор Шанхая 08.07.</div>
+  <p><b>➕ Чем дополнить самой.</b> 🎫 = нужна предварительная бронь по паспорту; ⛔Пн = закрыто по понедельникам. <span class="muted">Часы/цены проверены 25.06.2026.</span></p>
+  <table>
+    <tr><th>Место</th><th>Часы</th><th>Цена</th><th>Заметки</th></tr>
+    <tr><td>Озеро Сюаньу <span class="cn">玄武湖</span></td><td>06:00–22:00 летом</td><td>бесплатно 🎫</td><td>Парк-озеро, лодки</td></tr>
+    <tr><td>Храм Цзимин <span class="cn">鸡鸣寺</span></td><td>07:30–17:00</td><td>¥10</td><td>Буддийский храм у стены</td></tr>
+    <tr><td>Стена Мин / ворота Чжунхуа <span class="cn">中华门</span></td><td>08:30–21:00</td><td>¥34</td><td>Прогулка поверху, подсветка</td></tr>
+    <tr><td>Президентский дворец <span class="cn">总统府</span></td><td>08:30–18:00, вход до 17:00 ⛔Пн</td><td>¥25 летом 🎫 за 3 дня</td><td>История Республики</td></tr>
+    <tr><td>Мавзолей Сунь Ятсена <span class="cn">中山陵</span></td><td>08:00–17:00 ⛔Пн</td><td>бесплатно 🎫 за 7 дней</td><td>Пурпурная гора, много ступеней</td></tr>
+    <tr><td>Музей шести династий <span class="cn">六朝博物馆</span></td><td>08:30–18:00</td><td>¥30, студ. ¥15</td><td>Летом по Пн работает</td></tr>
+    <tr><td>Нанкинский музей <span class="cn">南京博物院</span></td><td>~09:00–17:00 ⛔Пн</td><td>бесплатно 🎫</td><td>Один из лучших в Китае</td></tr>
+    <tr><td>Мемориал Нанкинской резни</td><td>08:30–17:30 ⛔Пн</td><td>бесплатно 🎫</td><td>Место скорби, тихо</td></tr>
+    <tr><td>Храм Конфуция / Фуцзымяо <span class="cn">夫子庙</span></td><td>улица ~08:00–21:00</td><td>район бесплатно; залы ¥30–40</td><td>Набережная Циньхуай, вечером красиво</td></tr>
+  </table>
+  <div class="box warn"><b>💡 Бронь</b> делается в мини-программах WeChat, часто только на китайском, — удобно попросить помочь куратора или китайских студентов из лагеря.</div>
+
+  <h2 class="block" id="b6"><span class="n">6</span>Чем заняться, кроме осмотра</h2>
+  <ul>
+    <li>Вечерняя прогулка по набережной <b>Циньхуай</b> у Фуцзымяо, лодка с подсветкой.</li>
+    <li><b>Ночные ярмарки</b> летом на Фуцзымяо и Циньхуай — подсветка, лодочные прогулки, временные выставки в музеях.</li>
+    <li><b>Озеро Сюаньу</b> на закате.</li>
+    <li>Подняться на <b>городскую стену</b>.</li>
+    <li>Чайная церемония / местный чай.</li>
+    <li><b>Пурпурная гора Цзыцзиньшань</b> — парк, канатка, обсерватория.</li>
+  </ul>
+
+  <h2 class="block" id="b7"><span class="n">7</span>Shopping <span class="muted" style="font-size:14px">— ТЦ, сувениры и бренды</span></h2>
+  <div class="box info" style="font-size:13px">Всё про покупки в одном месте: <b>где торговые центры</b>, <b>что привезти как сувенир</b> и <b>какие бренды</b> стоит брать. Сегмент брендов: <span class="tier t1">доступный</span> <span class="tier t2">средний</span> <span class="tier t3">премиум</span>. Электронику вроде Xiaomi и Anker в Китае часто берут выгоднее, чем дома.</div>
+
+  <h3 class="shead">🛍️ Где покупать — ТЦ и районы</h3>
+  <p>Кампус Цзюлунху — в районе <b>Цзяннин</b>, не в центре. Что доступно:</p>
+  <ul>
+    <li><b>На кампусе / пешком:</b> дешёвые студенческие столовые, мини-маркеты, аптечный пункт, кафе.</li>
+    <li><b>Ближайший большой досуг — деловой район Байцзяху</b> <span class="cn">百家湖</span> в Цзяннине, несколько остановок на метро или такси, не пешком: крупные ТЦ с магазинами, кино и ресторанами — <b><span class="cn">景枫 KINGMO</span></b>, <b>Golden Eagle</b> <span class="cn">金鹰</span> и др. Ближе к <b>метро линии 1, станция «<span class="cn">百家湖</span>» Baijiahu</b>.</li>
+    <li><b>Часы ТЦ</b> обычно ~10:00–22:00, точные — в Amap.</li>
+    <li>За центральным шопингом — <b>Синьцзекоу</b> <span class="cn">新街口</span>, линия 3/метро в центр.</li>
+  </ul>
+
+  <h3 class="shead">🎁 Сувениры из Китая</h3>
+  <p>Цены — <b>ориентир</b> при курсе 25.06.2026, 1 ¥ ≈ 0,41 BYN. На рынках и в лавках уместен <b>торг</b>, в ТЦ и супермаркетах — нет.</p>
+  <table>
+    <tr><th>Сувенир</th><th>Что это</th><th>Ориентир цены</th></tr>
+    <tr><td><b>Чай</b> — улун, пуэр, жасминовый; местный <b>Юйхуа</b> <span class="cn">雨花茶</span></td><td>Лучший «съедобный» подарок; брать в специализированных чайных</td><td>¥50–300 ≈ 20–120 BYN</td></tr>
+    <tr><td><b>Шёлк</b>, платки, нанкинская парча <b>юньцзинь</b> <span class="cn">云锦</span></td><td>Визитная карточка Китая; юньцзинь — гордость именно Нанкина</td><td>платок ¥100–400 ≈ 40–165 BYN</td></tr>
+    <tr><td><b>Складной веер</b> <span class="cn">扇子</span></td><td>Бамбук/сандал с росписью — лёгкий и красивый сувенир</td><td>¥20–100 ≈ 8–40 BYN</td></tr>
+    <tr><td><b>Фарфор</b> из Цзиндэчжэня <span class="cn">景德镇</span></td><td>Чашки, чайные пары, вазы — от традиционных до современных</td><td>¥50–500 ≈ 20–205 BYN</td></tr>
+    <tr><td><b>Бумажная вырезка</b> цзяньчжи <span class="cn">剪纸</span></td><td>Ажурные узоры; в рамке — готовый подарок</td><td>¥20–150 ≈ 8–60 BYN</td></tr>
+    <tr><td><b>Каллиграфия / печать</b> с именем <span class="cn">印章</span></td><td>Кисти, тушь, именная печать иероглифами — необычно</td><td>¥30–200 ≈ 12–80 BYN</td></tr>
+    <tr><td><b>Камешки Юйхуа</b> <span class="cn">雨花石</span></td><td>«Дождевые цветы» — пёстрые галечки, местный сувенир Нанкина</td><td>¥10–100 ≈ 4–40 BYN</td></tr>
+    <tr><td><b>Палочки для еды</b>, магниты, мелочь</td><td>Недорогие сувениры для коллег и друзей</td><td>¥10–80 ≈ 4–33 BYN</td></tr>
+  </table>
+  <div class="gallery">
+    <figure class="img">
+      <img src="img/tea.jpg" alt="Китайский чай">
+      <figcaption>Китайский зелёный чай — топ-сувенир. <span class="muted">Wikimedia</span></figcaption>
+    </figure>
+    <figure class="img">
+      <img src="img/fan.jpg" alt="Складной веер">
+      <figcaption>Расписной складной веер. <span class="muted">Wikimedia</span></figcaption>
+    </figure>
+    <figure class="img">
+      <img src="img/porcelain.jpg" alt="Фарфор Цзиндэчжэнь">
+      <figcaption>Сине-белый фарфор Цзиндэчжэнь. <span class="muted">Wikimedia</span></figcaption>
+    </figure>
+    <figure class="img">
+      <img src="img/jianzhi.jpg" alt="Бумажная вырезка цзяньчжи">
+      <figcaption>Цзяньчжи — традиционная бумажная вырезка. <span class="muted">Wikimedia</span></figcaption>
+    </figure>
+  </div>
+  <div class="box warn" style="font-size:13px"><b>⚠️ На обратном пути:</b> мясное вроде вакуумной утки и «молочку» через границу везти проблемно — лучше выбирать непортящееся: чай, шёлк, фарфор, веера, сувениры.</div>
+
+  <h3 class="shead">🏷️ Качественные бренды, которые стоит купить</h3>
+  <p class="muted" style="font-size:12.5px">Проверены по нескольким источникам как популярные у покупателей и туристов.</p>
+  <h3 class="cat" style="border-left-color:#2f6fb3">📱 Электроника</h3>
+  <div class="bgrid">
+      <div class="brand">
+        <img class="lg" src="img/brands/xiaomi.png" alt="Xiaomi" loading="lazy">
+        <div class="bi"><b><a href="https://mi.com" target="_blank">Xiaomi</a> <span class="cn">小米</span></b><span class="tier t1">доступный–средний</span><span class="bd">Смартфоны, умный дом, гаджеты — флагман доступных технологий.</span></div>
+      </div>
+      <div class="brand">
+        <img class="lg" src="img/brands/huawei.png" alt="Huawei" loading="lazy">
+        <div class="bi"><b><a href="https://huawei.com" target="_blank">Huawei</a> <span class="cn">华为</span></b><span class="tier t2">средний–премиум</span><span class="bd">Смартфоны, часы, сильная мобильная фотография.</span></div>
+      </div>
+      <div class="brand">
+        <img class="lg" src="img/brands/honor.png" alt="Honor" loading="lazy">
+        <div class="bi"><b><a href="https://hihonor.com" target="_blank">Honor</a> <span class="cn">荣耀</span></b><span class="tier t1">доступный–средний</span><span class="bd">Смартфоны с хорошим балансом цена/качество.</span></div>
+      </div>
+      <div class="brand">
+        <img class="lg" src="img/brands/anker.png" alt="Anker" loading="lazy">
+        <div class="bi"><b><a href="https://anker.com" target="_blank">Anker</a> <span class="cn">安克</span></b><span class="tier t1">доступный–средний</span><span class="bd">Повербанки, зарядки, кабели — must для поездки.</span></div>
+      </div>
+  </div>
+  <h3 class="cat" style="border-left-color:#7a4fb0">👕 Одежда и обувь</h3>
+  <div class="bgrid">
+      <div class="brand">
+        <img class="lg" src="img/brands/lining.png" alt="Li-Ning" loading="lazy">
+        <div class="bi"><b><a href="https://lining.com" target="_blank">Li-Ning</a> <span class="cn">李宁</span></b><span class="tier t2">средний</span><span class="bd">Спорт + гочао-мода, узнаваемый бренд.</span></div>
+      </div>
+      <div class="brand">
+        <img class="lg" src="img/brands/anta.png" alt="Anta" loading="lazy">
+        <div class="bi"><b><a href="https://anta.com" target="_blank">Anta</a> <span class="cn">安踏</span></b><span class="tier t1">доступный–средний</span><span class="bd">Спортивная одежда; владеет FILA в Китае.</span></div>
+      </div>
+      <div class="brand">
+        <span class="lg badge" style="background:#7a4fb0">波</span>
+        <div class="bi"><b><a href="https://bosideng.com" target="_blank">Bosideng</a> <span class="cn">波司登</span></b><span class="tier t2">средний–премиум</span><span class="bd">Пуховики мирового уровня, 47+ лет качества.</span></div>
+      </div>
+      <div class="brand">
+        <span class="lg badge" style="background:#7a4fb0">UR</span>
+        <div class="bi"><b><a href="https://urbanrevivo.com" target="_blank">Urban Revivo</a></b><span class="tier t2">средний</span><span class="bd">«Китайская Zara» — модно и доступно.</span></div>
+      </div>
+      <div class="brand">
+        <span class="lg badge" style="background:#7a4fb0">鸟</span>
+        <div class="bi"><b><a href="https://peacebird.com" target="_blank">Peacebird</a> <span class="cn">太平鸟</span></b><span class="tier t2">средний</span><span class="bd">Молодёжная мода, частые коллаборации.</span></div>
+      </div>
+      <div class="brand">
+        <span class="lg badge" style="background:#7a4fb0">回</span>
+        <div class="bi"><b>Warrior <span class="cn">回力</span></b><span class="tier t1">доступный</span><span class="bd">Культовые ретро-кеды, очень недорого.</span></div>
+      </div>
+  </div>
+  <h3 class="cat" style="border-left-color:#c0497a">💄 Косметика</h3>
+  <div class="bgrid">
+      <div class="brand">
+        <span class="lg badge" style="background:#c0497a">花</span>
+        <div class="bi"><b><a href="https://florasis.com" target="_blank">Florasis</a> <span class="cn">花西子</span></b><span class="tier t2">средний</span><span class="bd">Косметика в китайском стиле, культовая упаковка.</span></div>
+      </div>
+      <div class="brand">
+        <span class="lg badge" style="background:#c0497a">完</span>
+        <div class="bi"><b><a href="https://perfectdiary.com" target="_blank">Perfect Diary</a> <span class="cn">完美日记</span></b><span class="tier t1">доступный</span><span class="bd">Трендовая молодёжная декоративка.</span></div>
+      </div>
+      <div class="brand">
+        <span class="lg badge" style="background:#c0497a">FK</span>
+        <div class="bi"><b>Flower Knows <span class="cn">花知晓</span></b><span class="tier t1">доступный–средний</span><span class="bd">Милая «сказочная» упаковка.</span></div>
+      </div>
+      <div class="brand">
+        <span class="lg badge" style="background:#c0497a">珀</span>
+        <div class="bi"><b><a href="https://proya.com" target="_blank">Proya</a> <span class="cn">珀莱雅</span></b><span class="tier t2">средний</span><span class="bd">Уход №1 среди локальных, научный подход.</span></div>
+      </div>
+      <div class="brand">
+        <span class="lg badge" style="background:#c0497a">百</span>
+        <div class="bi"><b><a href="https://pechoin.com" target="_blank">Pechoin</a> <span class="cn">百雀羚</span></b><span class="tier t1">доступный</span><span class="bd">Наследие с 1931 — женьшень и жемчуг.</span></div>
+      </div>
+      <div class="brand">
+        <span class="lg badge" style="background:#c0497a">薇</span>
+        <div class="bi"><b>Winona <span class="cn">薇诺娜</span></b><span class="tier t2">средний</span><span class="bd">Дерматокосметика для чувствительной кожи — №1 в аптечном сегменте.</span></div>
+      </div>
+  </div>
+  <h3 class="cat" style="border-left-color:#d2812f">🍬 Еда и снеки</h3>
+  <div class="bgrid">
+      <div class="brand">
+        <span class="lg badge" style="background:#d2812f">兔</span>
+        <div class="bi"><b>White Rabbit <span class="cn">大白兔</span></b><span class="tier t1">доступный</span><span class="bd">Молочные ириски — икона с 1959 года.</span></div>
+      </div>
+      <div class="brand">
+        <img class="lg" src="img/brands/wantwant.png" alt="Want Want" loading="lazy">
+        <div class="bi"><b><a href="https://want-want.com" target="_blank">Want Want</a> <span class="cn">旺旺</span></b><span class="tier t1">доступный</span><span class="bd">Рисовые крекеры и снеки.</span></div>
+      </div>
+      <div class="brand">
+        <img class="lg" src="img/brands/threesquirrels.png" alt="Three Squirrels" loading="lazy">
+        <div class="bi"><b><a href="https://threesquirrels.com" target="_blank">Three Squirrels</a> <span class="cn">三只松鼠</span></b><span class="tier t1">доступный</span><span class="bd">Орехи и сухофрукты — №1 онлайн.</span></div>
+      </div>
+      <div class="brand">
+        <span class="lg badge" style="background:#d2812f">良</span>
+        <div class="bi"><b>Bestore <span class="cn">良品铺子</span></b><span class="tier t1">доступный</span><span class="bd">Снеки, сухофрукты, сладости — популярная сеть.</span></div>
+      </div>
+  </div>
+  <h3 class="cat" style="border-left-color:#3a8f5d">🍵 Чай</h3>
+  <div class="bgrid">
+      <div class="brand">
+        <span class="lg badge" style="background:#3a8f5d">天</span>
+        <div class="bi"><b><a href="https://tenfu.com" target="_blank">Tenfu's Tea</a> <span class="cn">天福茗茶</span></b><span class="tier t2">средний</span><span class="bd">Сеть чайных №1 — удобно туристам, есть дегустация.</span></div>
+      </div>
+      <div class="brand">
+        <span class="lg badge" style="background:#3a8f5d">益</span>
+        <div class="bi"><b>Dayi · TAETEA <span class="cn">大益</span></b><span class="tier t2">средний–премиум</span><span class="bd">Эталонный пуэр из Мэнхая.</span></div>
+      </div>
+  </div>
+  <h3 class="cat" style="border-left-color:#5b6470">🛍️ Прочее</h3>
+  <div class="bgrid">
+      <div class="brand">
+        <img class="lg" src="img/brands/miniso.png" alt="Miniso" loading="lazy">
+        <div class="bi"><b><a href="https://miniso.com" target="_blank">Miniso</a> <span class="cn">名创优品</span></b><span class="tier t1">доступный</span><span class="bd">Недорогие милые товары и сувениры.</span></div>
+      </div>
+      <div class="brand">
+        <span class="lg badge" style="background:#5b6470">晨</span>
+        <div class="bi"><b>M&G <span class="cn">晨光</span></b><span class="tier t1">доступный</span><span class="bd">Канцелярия и ручки — массовый бренд.</span></div>
+      </div>
+      <div class="brand">
+        <span class="lg badge" style="background:#5b6470">元</span>
+        <div class="bi"><b>Genki Forest <span class="cn">元气森林</span></b><span class="tier t1">доступный</span><span class="bd">Газировка без сахара — модный напиток.</span></div>
+      </div>
+      <div class="brand">
+        <span class="lg badge" style="background:#5b6470">泡</span>
+        <div class="bi"><b>Pop Mart <span class="cn">泡泡玛特</span></b><span class="tier t2">средний</span><span class="bd">Коллекционные фигурки-блайндбоксы — модный сувенир молодёжи.</span></div>
+      </div>
+  </div>
+  <p class="muted" style="font-size:12.5px"><b>Международные бренды</b>, что хорошо представлены в Китае, иногда шире выбор или дешевле: Uniqlo, Muji, Decathlon, Nike/adidas, Apple. <b>Где искать:</b> ТЦ Синьцзекоу и Байцзяху, официальные магазины и Tmall/JD; косметику и снеки — в супермаркетах и дрогери.</p>
+
+  <h2 class="block" id="b8"><span class="n">8</span>Еда и напитки</h2>
+  <p><b>Кухня Нанкина</b> — хуайянская, мягкая, не острая:</p>
+  <ul>
+    <li>Соленая утка по-нанкински <span class="cn">盐水鸭</span> — визитная карточка.</li>
+    <li>Утиная кровь с вермишелью <span class="cn">鸭血粉丝汤</span> — местный суп.</li>
+    <li>Сяолунбао <span class="cn">小笼包</span> — паровые пельмешки с бульоном.</li>
+    <li>Уличная еда на Фуцзымяо вечером.</li>
+  </ul>
+  <p><b>Где есть:</b> столовые кампуса — дёшево и удобно, лапшичные у кампуса, фудкорты в ТЦ Байцзяху, рестораны Фуцзымяо. <b>Меню</b> часто QR-код на столе. <b>Воду из-под крана не пить.</b> Если есть аллергии — заранее сохранить фразу-карточку на китайском, см. блок 12.</p>
+
+  <h2 class="block" id="b9"><span class="n">9</span>Подарок принимающей семье из Беларуси <span class="muted" style="font-size:14px">— день в семье 05.07</span></h2>
+  <p>Небольшой подарок из Беларуси — <b>хороший тон</b> и тёплый жест. Идея: что-то <b>с национальным колоритом</b>, вкусное или практичное, и <b>понемногу для разных членов семьи</b>: взрослым — одно, детям — сладости и мелочь.</p>
+
+  <h3>🎁 Что повезти из Беларуси, с ориентиром цен</h3>
+  <table>
+    <tr><th>Подарок</th><th>Почему хорошо</th><th>Ориентир цены</th></tr>
+    <tr><td><b>Лён с национальным узором</b> — полотенце, салфетки, скатерть; васильки, зубр, аист</td><td>Самобытно, практично, неперевозимых проблем нет — «лицо Беларуси»</td><td>15–40 BYN</td></tr>
+    <tr><td><b>Конфеты «Коммунарка» / «Спартак»</b> — красивая коробка ассорти</td><td>Сладкое дарить уместно всегда; коробка выглядит празднично</td><td>12–25 BYN</td></tr>
+    <tr><td><b>Зефир, клюква в сахаре</b> от «Красного пищевика»</td><td>Лёгкое, недорогое, нравится детям</td><td>5–10 BYN</td></tr>
+    <tr><td><b>Косметика «Белита-Витэкс»</b> — крем, маска, набор</td><td>В Китае ценят уход за кожей — хороший подарок маме или дочке</td><td>15–30 BYN</td></tr>
+    <tr><td><b>Сувенир из соломки / керамика</b> с белорусским узором</td><td>Этнический колорит, ручная работа</td><td>10–35 BYN</td></tr>
+    <tr><td><b>Магниты, открытки</b> с зубром, аистом, видами Минска</td><td>Мелочь для детей и «на память»</td><td>3–8 BYN</td></tr>
+    <tr><td><b>Бальзам «Беловежская» / медовуха</b> <span class="muted">— только взрослым</span></td><td>Если в семье есть взрослые мужчины — статусный «местный» подарок</td><td>15–30 BYN</td></tr>
+  </table>
+  <div class="box ok" style="font-size:13.3px"><b>💡 Удачный набор «для семьи»:</b> льняное полотенце с узором + коробка конфет + небольшой сувенир-оберег. Взрослым добавить косметику или бальзам, детям — сладости и магнит. Бюджет <b>~40–70 BYN</b> смотрится достойно.</div>
+
+  <h3>🀄 Что любят/ценят китайцы и чего избегать</h3>
+  <div class="quick">
+    <div class="c" style="border-left-color:#3a9d5d"><b>✅ Хорошо</b>Сладости и шоколад · качественный чай/кофе · вещи с национальным колоритом · косметика/уход · красивая <b>красная или золотая</b> упаковка · дарить и принимать <b>двумя руками</b>.</div>
+    <div class="c" style="border-left-color:#b3242b"><b>⛔ Избегать</b><b>Часы</b> — намёк на «конец» · набор из <b>4 предметов</b>, где 4 созвучно «смерти» · <b>зонт</b>, созвучный «расставанию» · обувь · <b>зелёный головной убор</b> · бело-/чёрная упаковка · белые и жёлтые хризантемы.</div>
+  </div>
+  <div class="box info" style="font-size:13px"><b>Этикет:</b> подарок могут вежливо <b>сначала отказаться</b> принять — это нормально, предложить ещё раз. Дарить лучше в конце визита.</div>
+  <div class="box warn" style="font-size:13px"><b>⚠️ Через границу:</b> в Китай нельзя ввозить мясное и «молочку», поэтому колбасу, сыр и сгущёнку лучше не брать. Безопасный выбор — <b>лён, косметика, конфеты/зефир, сувениры</b>.</div>
+
+  <h2 class="block" id="b11"><span class="n">10</span>Деньги — подробно</h2>
+  <ul>
+    <li><b>Основа — Alipay</b> <span class="cn">支付宝</span> <b>и WeChat Pay</b> <span class="cn">微信</span><b>:</b> оплата по QR почти везде. Установить и верифицировать по паспорту <b>до вылета</b>.</li>
+  </ul>
+  <div class="box warn">
+    <span class="h">💳 Белорусские карты в Китае — проверено 25.06.2026</span>
+    Материковый Китай <b>не вводил санкций</b> против банков РБ, поэтому белорусские <b>Visa/Mastercard в целом работают</b>, особенно Mastercard, — но <b>нестабильно</b>, зависит от банка, карты и терминала.
+    <ul>
+      <li>Надёжнее карта <b>несанкционного банка</b>; на февраль 2026 это <b>Приорбанк, БСБ-Банк, Паритетбанк, БНБ-Банк, Zepter, Статусбанк</b>.</li>
+      <li>Лучше карта <b>в евро</b> — одна конвертация вместо двух.</li>
+      <li>Комиссия Alipay для иностранных карт — <b>3% на платежи свыше 200 ¥</b>.</li>
+      <li>⚠️ <b>Обязательно проверить карту на загранплатёж до вылета.</b></li>
+      <li><b>UnionPay:</b> новые карты в РБ сейчас почти не выпускают — Белгазпромбанк приостановил с 06.05.2026. Старая рабочая UnionPay — надёжна.</li>
+      <li>Гонконг — исключение, там эквайер HSBC под санкциями, но к Нанкину это не относится.</li>
+    </ul>
+  </div>
+  <p><b>Наличные</b> USD/EUR про запас → обменять на юани. <b>Ориентир трат:</b> метро ¥2–5, обед в столовой ¥15–30, музей бесплатно–¥40, такси по городу ¥15–40.</p>
+
+  <h2 class="block" id="b12"><span class="n">11</span>Связь и интернет</h2>
+  <ul>
+    <li><b>Международная eSIM</b> вроде Airalo, Nomad, Holafly = Google/WhatsApp/Telegram/Instagram работают <b>без VPN</b>. Поставить заранее, проверить поддержку eSIM телефоном.</li>
+    <li><b>Местная симка</b> дешевле, но за файрволом → нужен <b>VPN</b>; поставить ДО въезда, в Китае не скачать.</li>
+    <li>Оптимум: eSIM как основной интернет + VPN про запас.</li>
+  </ul>
+
+  <h2 class="block" id="b13"><span class="n">12</span>Язык и общение</h2>
+  <ul>
+    <li>Английский знают мало. Главный помощник — <b>переводчик</b>: Google Translate через eSIM или VPN, Baidu Translate, офлайн-словарь <b>Pleco</b>. Скачать офлайн-пакет китайского.</li>
+    <li><b>Фото-перевод</b> камерой на меню или вывеску очень выручает.</li>
+    <li><b>Адрес показывать иероглифами</b>, см. блок 0.</li>
+  </ul>
+
+  <h2 class="block" id="b14"><span class="n">13</span>Здоровье и безопасность</h2>
+  <ul>
+    <li><b>Страховка:</b> для ориентира — ЗАСО «ТАСК», 50 000 USD, 29.06–10.07; у каждого участника страховщик может быть свой. <b>До врача звонить в ассистанс</b> «Савитар Груп», телефон в блоке 0. <b>Используйте данные своей страховки и держите её под рукой</b> — полис в телефоне.</li>
+    <li><b>Аптеки</b> <span class="cn">药店</span> повсюду; взять свои лекарства с запасом + список действующих веществ.</li>
+    <li><b>Жара/влажность:</b> пить много воды, головной убор, солнцезащита, не перегреваться.</li>
+    <li><b>Безопасность:</b> Китай очень безопасен, в т.ч. вечером. Стандартная бдительность в толпе. Держать связь с куратором и родителями.</li>
+    <li><b>При ЧП:</b> 110/120; параллельно — куратору лагеря, при серьёзном — консульству в Шанхае.</li>
+  </ul>
+
+  <h2 class="block" id="b15"><span class="n">14</span>Культура и этикет</h2>
+  <ul>
+    <li><b>Подарки:</b> дарить/принимать двумя руками; могут сперва вежливо отказаться — предложить ещё раз. Избегать <b>часов</b>, наборов из <b>4</b> предметов, бело-чёрной упаковки. Хорошо — красная/золотая. Подробно — блок 9.</li>
+    <li><b>За столом:</b> не втыкать палочки вертикально в рис; общие блюда брать общей ложкой.</li>
+    <li><b>Поведение:</b> в храмах и Мемориале — тихо, без шумного фото.</li>
+    <li><b>Торг</b> — на рынках да, в магазинах нет. <b>Фото людей</b> — спрашивать разрешение.</li>
+  </ul>
+
+  <h2 class="block" id="b16"><span class="n">15</span>Практические лайфхаки</h2>
+  <ul>
+    <li><b>Погода на 25.06.2026:</b> +32…35 °C, влажность ~80%, частые дожди сезона мэйюй. Взять: лёгкую дышащую одежду, <b>зонт/дождевик</b>, головной убор, удобную обувь, бутылку для воды, лёгкую кофту от кондиционеров.</li>
+    <li><b>На длительные экскурсии</b> брать с собой воду, перекус, повербанк и головной убор; удобная обувь обязательна.</li>
+    <li><b>Туалеты:</b> в метро/ТЦ есть; своя салфетка не лишняя.</li>
+    <li><b>Повербанк</b> обязателен: телефон — это карта, связь и навигация.</li>
+    <li><b>Часы:</b> ТЦ ~10:00–22:00, музеи ~08:30–17:30, многие ⛔ по Пн.</li>
+    <li><b>Wi-Fi</b> в кафе есть, но к заблокированным сервисам всё равно нужен eSIM/VPN.</li>
+  </ul>
+
+  <h2 class="block" id="b17"><span class="n">16</span>Свободное время — идеи под расписание</h2>
+  <p>Программа плотная; свободны в основном <b>вечера</b> и отдельные окна.</p>
+  <ul>
+    <li><b>Вечер у кампуса:</b> ужин в столовой или лапшичной, ТЦ Байцзяху с кино и едой — линия 1.</li>
+    <li><b>Вечер в центре:</b> Фуцзымяо/Циньхуай с подсветкой — самый атмосферный вечер; метро ~40–60 мин.</li>
+    <li><b>Утро/окно:</b> озеро Сюаньу или храм Цзимин со стеной — они рядом друг с другом.</li>
+  </ul>
+  <div class="box warn">⚠️ После целого дня экскурсий по жаре силы на вечер ограничены — не перегружать.</div>
+
+  <h2 class="block" id="b19"><span class="n">17</span>Контакты и ссылки</h2>
+  <table>
+    <tr><td>Лагерь/организатор</td><td><i>вписать контакт куратора по приезде</i></td></tr>
+    <tr><td>Генконсульство РБ, Шанхай</td><td>china.shanghai@mfa.gov.by · shanghai.mfa.gov.by</td></tr>
+    <tr><td>Посольство РБ, Пекин</td><td>+86 10 6532 1691 · china@mfa.gov.by</td></tr>
+    <tr><td>Ассистанс страховки</td><td>+7 495 987 17 75 · Telegram @Savitargrbot</td></tr>
+    <tr><td>Экстренные КНР</td><td>110 / 120 / 119 · туристическая 12301</td></tr>
+    <tr><td>Родители</td><td><i>основной способ связи — мессенджер через eSIM</i></td></tr>
+  </table>
+
+  <h2 class="block" id="b20"><span class="n">18</span>Сборы — чек-лист «что взять»</h2>
+  <ul>
+    <li><b>Документы:</b> загранпаспорт и копии на бумаге и в фото, распечатки билетов/брони/программы, полис, адрес общежития иероглифами.</li>
+    <li><b>Техника:</b> телефон с eSIM, <b>универсальный переходник типа A/I</b>, повербанк, зарядки, наушники.</li>
+    <li><b>Деньги:</b> проверенная карта Visa/MC плюс UnionPay про запас, наличные USD/EUR.</li>
+    <li><b>Одежда/быт:</b> лёгкая одежда по жаре, зонт/дождевик, головной убор, удобная обувь, лёгкая кофта, бутылка для воды, влажные салфетки.</li>
+    <li><b>Аптечка:</b> лекарства с запасом + список действующих веществ, от солнца, пластыри, средства ЖКТ.</li>
+    <li><b>Подарок</b> принимающей семье на день в семье 05.07 — небольшой, из Беларуси, см. блок 9.</li>
+  </ul>
+
+  <h2 class="block" id="b21"><span class="n">19</span>Приложения для поездки <span class="muted" style="font-size:14px">— поставить заранее</span></h2>
+  <div class="box warn" style="font-size:13px"><b>⚠️ Главное:</b> платёжные приложения, переводчик и <b>VPN ставить и проверять ДО вылета</b> — в Китае их магазины и сайты часто недоступны. Иконки и ссылки ведут в App Store / Google Play.</div>
+  <div class="apps">
+    <div class="app">
+      <img class="ico" src="img/icons/alipay.png" alt="" loading="lazy">
+      <div class="meta">
+        <b>Alipay <span class="cn">支付宝</span></b>
+        <span class="d">Суперапп №1: оплата по QR, такси, билеты, мини-программы. Привязать карту, верификация по паспорту.</span>
+        <span class="dl"><a href="https://apps.apple.com/us/app/id333206289" target="_blank">App Store</a><a href="https://play.google.com/store/search?q=Alipay&c=apps" target="_blank">Google Play</a></span>
+      </div>
+    </div>
+    <div class="app">
+      <img class="ico" src="img/icons/wechat.png" alt="" loading="lazy">
+      <div class="meta">
+        <b>WeChat <span class="cn">微信</span></b>
+        <span class="d">Мессенджер + оплата + мини-программы. Основное общение в Китае.</span>
+        <span class="dl"><a href="https://apps.apple.com/us/app/id414478124" target="_blank">App Store</a><a href="https://play.google.com/store/search?q=WeChat&c=apps" target="_blank">Google Play</a></span>
+      </div>
+    </div>
+    <div class="app">
+      <img class="ico" src="img/icons/amap.png" alt="" loading="lazy">
+      <div class="meta">
+        <b>Amap <span class="cn">高德地图</span></b>
+        <span class="d">Главный навигатор Китая: точные карты, метро, автобусы, пешие маршруты. Есть офлайн-карты.</span>
+        <span class="dl"><a href="https://apps.apple.com/us/app/id461703208" target="_blank">App Store</a><a href="https://play.google.com/store/search?q=Amap&c=apps" target="_blank">Google Play</a></span>
+      </div>
+    </div>
+    <div class="app">
+      <img class="ico" src="img/icons/metroman.png" alt="" loading="lazy">
+      <div class="meta">
+        <b>MetroMan China</b>
+        <span class="d">Офлайн-схемы метро городов Китая, включая Нанкин и Шанхай, — маршруты и пересадки без интернета.</span>
+        <span class="dl"><a href="https://apps.apple.com/us/app/id466351433" target="_blank">App Store</a><a href="https://play.google.com/store/search?q=MetroMan%20China&c=apps" target="_blank">Google Play</a></span>
+      </div>
+    </div>
+    <div class="app">
+      <img class="ico" src="img/icons/mapsme.png" alt="" loading="lazy">
+      <div class="meta">
+        <b>Maps.me</b>
+        <span class="d">Офлайн-карты и навигация без интернета — выручает, если сел трафик.</span>
+        <span class="dl"><a href="https://apps.apple.com/us/app/id510623322" target="_blank">App Store</a><a href="https://play.google.com/store/search?q=MAPS.ME%20offline%20maps&c=apps" target="_blank">Google Play</a></span>
+      </div>
+    </div>
+    <div class="app">
+      <img class="ico" src="img/icons/tripcom.png" alt="" loading="lazy">
+      <div class="meta">
+        <b>Trip.com</b>
+        <span class="d">Билеты на поезда и самолёты, отели; англоязычный — удобно для поезда в Шанхай.</span>
+        <span class="dl"><a href="https://apps.apple.com/us/app/id681752345" target="_blank">App Store</a><a href="https://play.google.com/store/search?q=Trip.com&c=apps" target="_blank">Google Play</a></span>
+      </div>
+    </div>
+    <div class="app">
+      <img class="ico" src="img/icons/variflight.png" alt="" loading="lazy">
+      <div class="meta">
+        <b>Variflight <span class="cn">飞常准</span></b>
+        <span class="d">Отслеживание статуса рейсов в реальном времени — задержки, гейты, прилёты.</span>
+        <span class="dl"><a href="https://apps.apple.com/us/app/id498818574" target="_blank">App Store</a><a href="https://play.google.com/store/search?q=Variflight&c=apps" target="_blank">Google Play</a></span>
+      </div>
+    </div>
+    <div class="app">
+      <img class="ico" src="img/icons/meituan.png" alt="" loading="lazy">
+      <div class="meta">
+        <b>Meituan <span class="cn">美团</span></b>
+        <span class="d">Доставка еды, заказ столиков, услуги и скидки рядом.</span>
+        <span class="dl"><a href="https://apps.apple.com/cn/app/id423084029" target="_blank">App Store</a><a href="https://play.google.com/store/search?q=Meituan&c=apps" target="_blank">Google Play</a></span>
+      </div>
+    </div>
+    <div class="app">
+      <img class="ico" src="img/icons/taobao.png" alt="" loading="lazy">
+      <div class="meta">
+        <b>Taobao <span class="cn">淘宝</span></b>
+        <span class="d">Крупнейший маркетплейс Китая — онлайн-покупки чего угодно.</span>
+        <span class="dl"><a href="https://apps.apple.com/us/app/id387682726" target="_blank">App Store</a><a href="https://play.google.com/store/search?q=Taobao&c=apps" target="_blank">Google Play</a></span>
+      </div>
+    </div>
+    <div class="app">
+      <img class="ico" src="img/icons/yandextr.png" alt="" loading="lazy">
+      <div class="meta">
+        <b>Яндекс Переводчик</b>
+        <span class="d">Перевод текста, голоса и по фото — наводишь камеру на меню или вывеску. Есть офлайн-режим.</span>
+        <span class="dl"><a href="https://apps.apple.com/us/app/id584291439" target="_blank">App Store</a><a href="https://play.google.com/store/search?q=Yandex%20Translate&c=apps" target="_blank">Google Play</a></span>
+      </div>
+    </div>
+    <div class="app">
+      <img class="ico" src="img/icons/trainchinese.png" alt="" loading="lazy">
+      <div class="meta">
+        <b>trainchinese</b>
+        <span class="d">Словарь и карточки для изучения китайского — для языкового лагеря.</span>
+        <span class="dl"><a href="https://apps.apple.com/us/app/id333830076" target="_blank">App Store</a><a href="https://play.google.com/store/search?q=trainchinese&c=apps" target="_blank">Google Play</a></span>
+      </div>
+    </div>
+    <div class="app">
+      <img class="ico" src="img/icons/du.png" alt="" loading="lazy">
+      <div class="meta">
+        <b>Du Chinese</b>
+        <span class="d">Чтение текстов на китайском по уровням сложности — практика для лагеря.</span>
+        <span class="dl"><a href="https://apps.apple.com/us/app/id1052961520" target="_blank">App Store</a><a href="https://play.google.com/store/search?q=Du%20Chinese&c=apps" target="_blank">Google Play</a></span>
+      </div>
+    </div>
+    <div class="app">
+      <img class="ico" src="img/icons/astrill.png" alt="" loading="lazy">
+      <div class="meta">
+        <b>Astrill VPN</b>
+        <span class="d">Популярный платный VPN для Китая — надёжно обходит файрвол. Поставить ДО въезда.</span>
+        <span class="dl"><a href="https://apps.apple.com/us/app/id572953702" target="_blank">App Store</a><a href="https://play.google.com/store/search?q=Astrill%20VPN&c=apps" target="_blank">Google Play</a></span>
+      </div>
+    </div>
+    <div class="app">
+      <span class="ico badge" style="background:#5b6470">VPN</span>
+      <div class="meta">
+        <b>AoxVPN</b>
+        <span class="d">VPN для обхода «Великого файрвола». Поставить ДО въезда. Точное приложение сверь по названию в сторе.</span>
+        <span class="dl"><a href="https://www.bing.com/search?q=AoxVPN+VPN+app+store" target="_blank">Найти в App Store</a><a href="https://play.google.com/store/search?q=AoxVPN&c=apps" target="_blank">Google Play</a></span>
+      </div>
+    </div>
+    <div class="app">
+      <span class="ico badge" style="background:#5b6470">VPN</span>
+      <div class="meta">
+        <b>Lite VPN</b>
+        <span class="d">Лёгкий запасной VPN. Поставить ДО въезда. Точное приложение сверь по названию в сторе.</span>
+        <span class="dl"><a href="https://apps.apple.com/us/app/id6736641897" target="_blank">App Store</a><a href="https://play.google.com/store/search?q=Lite%20VPN&c=apps" target="_blank">Google Play</a></span>
+      </div>
+    </div>
+  </div>
+  <p class="muted" style="font-size:12.5px">Если кнопка ведёт на поиск в сторе — выбери приложение с точным названием из списка. Для Android многие китайские приложения ставятся из местных сторов/APK, если их нет в Google Play.</p>
+
+  <h2 class="block" id="ph"><span class="n">📎</span>Мини-разговорник · RU → 拼音 → 中文</h2>
+  <table>
+    <tr><th>По-русски</th><th>Pinyin</th><th class="cn">中文</th></tr>
+    <tr><td>Здравствуйте</td><td>nǐ hǎo</td><td class="cn">你好</td></tr>
+    <tr><td>Спасибо</td><td>xièxie</td><td class="cn">谢谢</td></tr>
+    <tr><td>Пожалуйста / не за что</td><td>bú kèqi</td><td class="cn">不客气</td></tr>
+    <tr><td>Извините</td><td>duìbuqǐ</td><td class="cn">对不起</td></tr>
+    <tr><td>Сколько стоит?</td><td>duōshao qián?</td><td class="cn">多少钱？</td></tr>
+    <tr><td>Слишком дорого</td><td>tài guì le</td><td class="cn">太贵了</td></tr>
+    <tr><td>Где туалет?</td><td>cèsuǒ zài nǎli?</td><td class="cn">厕所在哪里？</td></tr>
+    <tr><td>Я не понимаю</td><td>wǒ tīng bù dǒng</td><td class="cn">我听不懂</td></tr>
+    <tr><td>Я не говорю по-китайски</td><td>wǒ bú huì shuō zhōngwén</td><td class="cn">我不会说中文</td></tr>
+    <tr><td>Помогите!</td><td>jiùmìng! / bāng wǒ</td><td class="cn">救命！/ 帮我</td></tr>
+    <tr><td>Мне нужен врач</td><td>wǒ xūyào yīshēng</td><td class="cn">我需要医生</td></tr>
+    <tr><td>Можно оплатить картой?</td><td>kěyǐ shuā kǎ ma?</td><td class="cn">可以刷卡吗？</td></tr>
+    <tr><td>Бутилированная вода</td><td>kuàngquánshuǐ</td><td class="cn">矿泉水</td></tr>
+    <tr><td>Не острое, пожалуйста</td><td>bú yào là</td><td class="cn">不要辣</td></tr>
+    <tr><td>Отвезите по этому адресу</td><td>qǐng dào zhège dìzhǐ</td><td class="cn">请到这个地址</td></tr>
+    <tr><td>ЮВ университет, кампус Цзюлунху</td><td>dōngnán dàxué jiǔlónghú xiàoqū</td><td class="cn">东南大学九龙湖校区</td></tr>
+  </table>
+
+  <footer>
+    Путеводитель «Нанкин 2026» · составлено и проверено 25.06.2026 · фото: Wikimedia Commons, карты: OpenStreetMap.<br>
+    Волатильные данные — часы, цены, брони, курс — сверять перед визитом в Amap / на месте.
+  </footer>
+</div>
+</body>
+</html>
